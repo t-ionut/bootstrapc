@@ -1,0 +1,5 @@
+source ~/.vim/init.vimrc
+source ~/.vim/general.vimrc
+source ~/.vim/plugins.vimrc
+source ~/.vim/keys.vimrc
+source ~/.vim/line.vimrc

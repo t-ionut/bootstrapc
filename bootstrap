@@ -1,0 +1,41 @@
+#!/bin/bash
+
+apt-get update && apt-get install -y network-manager network-manager-gnome \
+    curl vim feh thunar meld git i3 i3lock dmenu terminator \
+    chromium-browser firefox \
+    python3 python3-pip \
+    alsa-utils alsa-oss xfonts-terminus console-terminus zsh
+
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+pip install py3status
+pip install escrotum
+
+# Install Powerline fonts
+git clone https://github.com/powerline/fonts.git --depth=1 &&
+    cd fonts && ./install.sh && cd .. && rm -rf fonts
+
+# Install Fuzzy Finder
+git clone --depth=1 https://github.com/junegunn/fzf.git ~/.fzf
+~/.fzf/install
+
+# Set up i3 as default desktop manager
+mv ~/.dmrc ~/.dmrc_bk
+ln -sf ~/.bootstrapc/dotfiles/dmrc ~/.dmrc
+
+# Back up default i3 configs and use the ones from bootstrap
+mv ~/.i3 ~/.i3_bk
+ln -sf ~/.bootstrapc/dotfiles/i3 ~/.i3
+
+# Back up default zsh configs and use the ones from bootstrap
+mv ~/.zshrc ~/.zshrc_bk
+ln -sf ~/.bootstrapc/dotfiles/zshrc ~/.zshrc
+ln -sf ~/.bootstrapc/dotfiles/zsh_custom ~/.zsh_custom
+
+# Back up default vim configs and use the ones from bootstrap
+mv ~/.vimrc ~/.vimrc_bk
+ln -sf ~/.bootstrapc/dotfiles/vimrc ~/.vimrc
+mv ~/.vim ~/.vim_bk
+ln -sf ~/.bootstrapc/dotfiles/vim ~/.vim
+
+echo "Bootstrap finished! Remember to restart!"
