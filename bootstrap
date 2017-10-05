@@ -8,8 +8,8 @@ apt-get update && apt-get install -y network-manager network-manager-gnome \
 
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 
-pip install py3status
-pip install escrotum
+pip3 install py3status
+pip3 install escrotum
 
 # Install Powerline fonts
 git clone https://github.com/powerline/fonts.git --depth=1 &&
