@@ -9,9 +9,22 @@ echo -e "${GREEN}${BOLD}${PADDING}===> Installing packages...${PADDING}${RESET}"
 
 apt-get update -q
 
-PACKAGES=(python3 python3-pip network-manager network-manager-gnome curl vim feh thunar meld git i3
-            i3lock dmenu terminator chromium-browser firefox alsa-utils alsa-oss
+PACKAGES=(python-pip python3 python3-pip network-manager network-manager-gnome curl vim feh thunar meld git
+            dmenu terminator chromium-browser firefox alsa-utils alsa-oss
             xfonts-terminus console-terminus zsh)
+
+echo -e "${GREEN}${BOLD}${PADDING}===> Installing i3-gaps...${PADDING}${RESET}"
+
+git clone https://github.com/Airblader/i3 i3-gaps
+cd i3-gaps
+autoreconf --force --install
+rm -rf build
+mkdir -p build && cd build
+
+../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
+make
+make install
+cd && rm -rf i3-gaps
 
 for package in "${PACKAGES[@]}"
 do
@@ -35,8 +48,8 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing pip packages...${PADDING}${RESET}"
 
-pip3 install virtualenv
-pip3 install virtualenvwrapper
+pip install virtualenv
+pip install virtualenvwrapper
 pip3 install py3status
 pip3 install escrotum
 
