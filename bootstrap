@@ -1,41 +1,52 @@
 #!/bin/bash
 
+GREEN="\e[32m"
+BOLD="\e[1m"
+PADDING="\n"
+RESET="\e[0m"
+
+echo -e "${GREEN}${BOLD}${PADDING}===> Installing packages ...${PADDING}${RESET}"
+
 apt-get update && apt-get install -y network-manager network-manager-gnome \
     curl vim feh thunar meld git i3 i3lock dmenu terminator \
     chromium-browser firefox \
     python3 python3-pip \
     alsa-utils alsa-oss xfonts-terminus console-terminus zsh
 
+echo -e "${GREEN}${BOLD}${PADDING}===> Installing oh-my-zsh ...${PADDING}${RESET}"
+
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+echo -e "${GREEN}${BOLD}${PADDING}===> Installing pip packages ...${PADDING}${RESET}"
 
 pip3 install py3status
 pip3 install escrotum
 
-# Install Powerline fonts
+echo -e "${GREEN}${BOLD}${PADDING}===> Installing powerline fonts ...${PADDING}${RESET}"
+
 git clone https://github.com/powerline/fonts.git --depth=1 &&
     cd fonts && ./install.sh && cd .. && rm -rf fonts
 
-# Install Fuzzy Finder
+echo -e "${GREEN}${BOLD}${PADDING}===> Installing fzf fuzzy finder ...${PADDING}${RESET}"
+
 git clone --depth=1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-# Set up i3 as default desktop manager
+echo -e "${GREEN}${BOLD}${PADDING}===> Backing up possible existing configs ...${PADDING}${RESET}"
+
 mv ~/.dmrc ~/.dmrc_bk
-ln -sf ~/.bootstrapc/dotfiles/dmrc ~/.dmrc
-
-# Back up default i3 configs and use the ones from bootstrap
 mv ~/.i3 ~/.i3_bk
-ln -sf ~/.bootstrapc/dotfiles/i3 ~/.i3
-
-# Back up default zsh configs and use the ones from bootstrap
 mv ~/.zshrc ~/.zshrc_bk
+mv ~/.vimrc ~/.vimrc_bk
+mv ~/.vim ~/.vim_bk
+
+echo -e "${GREEN}${BOLD}${PADDING}===> Creating symlinks to configs in BootStraPC ...${PADDING}${RESET}"
+
+ln -sf ~/.bootstrapc/dotfiles/dmrc ~/.dmrc
+ln -sf ~/.bootstrapc/dotfiles/i3 ~/.i3
 ln -sf ~/.bootstrapc/dotfiles/zshrc ~/.zshrc
 ln -sf ~/.bootstrapc/dotfiles/zsh_custom ~/.zsh_custom
-
-# Back up default vim configs and use the ones from bootstrap
-mv ~/.vimrc ~/.vimrc_bk
 ln -sf ~/.bootstrapc/dotfiles/vimrc ~/.vimrc
-mv ~/.vim ~/.vim_bk
 ln -sf ~/.bootstrapc/dotfiles/vim ~/.vim
 
-echo "Bootstrap finished! Remember to restart!"
+echo -e "${GREEN}${BOLD}${PADDING}===> Bootstrap finished! Remember to restart!${PADDING}${RESET}"
