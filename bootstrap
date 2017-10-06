@@ -5,7 +5,7 @@ BOLD="\e[1m"
 PADDING="\n"
 RESET="\e[0m"
 
-echo -e "${GREEN}${BOLD}${PADDING}===> Installing packages ...${PADDING}${RESET}"
+echo -e "${GREEN}${BOLD}${PADDING}===> Installing packages...${PADDING}${RESET}"
 
 apt-get update && apt-get install -y network-manager network-manager-gnome \
     curl vim feh thunar meld git i3 i3lock dmenu terminator \
@@ -13,30 +13,30 @@ apt-get update && apt-get install -y network-manager network-manager-gnome \
     python3 python3-pip \
     alsa-utils alsa-oss xfonts-terminus console-terminus zsh
 
-echo -e "${GREEN}${BOLD}${PADDING}===> Setting zsh as the default shell for $(whoami) ...${PADDING}${RESET}"
+echo -e "${GREEN}${BOLD}${PADDING}===> Setting zsh as the default shell for $(whoami)...${PADDING}${RESET}"
 
 usermod -s $(which zsh) ionut
 
-echo -e "${GREEN}${BOLD}${PADDING}===> Installing oh-my-zsh ...${PADDING}${RESET}"
+echo -e "${GREEN}${BOLD}${PADDING}===> Installing oh-my-zsh...${PADDING}${RESET}"
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
-echo -e "${GREEN}${BOLD}${PADDING}===> Installing pip packages ...${PADDING}${RESET}"
+echo -e "${GREEN}${BOLD}${PADDING}===> Installing pip packages...${PADDING}${RESET}"
 
 pip3 install py3status
 pip3 install escrotum
 
-echo -e "${GREEN}${BOLD}${PADDING}===> Installing powerline fonts ...${PADDING}${RESET}"
+echo -e "${GREEN}${BOLD}${PADDING}===> Installing powerline fonts...${PADDING}${RESET}"
 
 git clone https://github.com/powerline/fonts.git --depth=1 &&
     cd fonts && ./install.sh && cd .. && rm -rf fonts
 
-echo -e "${GREEN}${BOLD}${PADDING}===> Installing fzf fuzzy finder ...${PADDING}${RESET}"
+echo -e "${GREEN}${BOLD}${PADDING}===> Installing fzf fuzzy finder...${PADDING}${RESET}"
 
 git clone --depth=1 https://github.com/junegunn/fzf.git ~/.fzf
 ~/.fzf/install
 
-echo -e "${GREEN}${BOLD}${PADDING}===> Backing up possible existing configs ...${PADDING}${RESET}"
+echo -e "${GREEN}${BOLD}${PADDING}===> Backing up possible existing configs...${PADDING}${RESET}"
 
 mv ~/.dmrc ~/.dmrc_bk
 mv ~/.i3 ~/.i3_bk
@@ -44,7 +44,7 @@ mv ~/.zshrc ~/.zshrc_bk
 mv ~/.vimrc ~/.vimrc_bk
 mv ~/.vim ~/.vim_bk
 
-echo -e "${GREEN}${BOLD}${PADDING}===> Creating symlinks to configs in BootStraPC ...${PADDING}${RESET}"
+echo -e "${GREEN}${BOLD}${PADDING}===> Creating symlinks to configs in BootStraPC...${PADDING}${RESET}"
 
 ln -sf ~/.bootstrapc/dotfiles/dmrc ~/.dmrc
 ln -sf ~/.bootstrapc/dotfiles/i3 ~/.i3
