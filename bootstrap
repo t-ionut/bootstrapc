@@ -13,9 +13,13 @@ apt-get update && apt-get install -y network-manager network-manager-gnome \
     python3 python3-pip \
     alsa-utils alsa-oss xfonts-terminus console-terminus zsh
 
+echo -e "${GREEN}${BOLD}${PADDING}===> Setting zsh as the default shell for $(whoami) ...${PADDING}${RESET}"
+
+usermod -s $(which zsh) ionut
+
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing oh-my-zsh ...${PADDING}${RESET}"
 
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing pip packages ...${PADDING}${RESET}"
 
