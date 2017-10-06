@@ -10,7 +10,7 @@ echo -e "${GREEN}${BOLD}${PADDING}===> Installing packages...${PADDING}${RESET}"
 apt-get update -q
 
 PACKAGES=(python-pip python3 python3-pip network-manager network-manager-gnome curl vim feh thunar meld git
-            dmenu terminator chromium-browser firefox alsa-utils alsa-oss
+            dmenu terminator chromium-browser firefox alsa-utils alsa-oss openssh-server openssh-client
             xfonts-terminus console-terminus zsh)
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing i3-gaps...${PADDING}${RESET}"
