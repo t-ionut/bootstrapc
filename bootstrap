@@ -52,11 +52,12 @@ git clone --depth=1 https://github.com/junegunn/fzf.git ~/.fzf
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Backing up possible existing configs...${PADDING}${RESET}"
 
-mv ~/.dmrc ~/.dmrc_bk
-mv ~/.i3 ~/.i3_bk
-mv ~/.zshrc ~/.zshrc_bk
-mv ~/.vimrc ~/.vimrc_bk
-mv ~/.vim ~/.vim_bk
+mv -b ~/.dmrc ~/.dmrc_bk
+mv -b ~/.i3 ~/.i3_bk
+mv -b ~/.zshrc ~/.zshrc_bk
+mv -b ~/.vimrc ~/.vimrc_bk
+mv -b ~/.vim ~/.vim_bk
+mv -b ~/.config/terminator ~/.config/terminator_bk
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Creating symlinks to configs in BootStraPC...${PADDING}${RESET}"
 
@@ -66,6 +67,7 @@ ln -sf ~/.bootstrapc/dotfiles/zshrc ~/.zshrc
 ln -sf ~/.bootstrapc/dotfiles/zsh_custom ~/.zsh_custom
 ln -sf ~/.bootstrapc/dotfiles/vimrc ~/.vimrc
 ln -sf ~/.bootstrapc/dotfiles/vim ~/.vim
+ln -sf ~/.bootstrapc/dotfiles/terminator ~/.config/terminator
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing vim plugins...${PADDING}${RESET}"
 
