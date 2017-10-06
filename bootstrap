@@ -7,11 +7,19 @@ RESET="\e[0m"
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing packages...${PADDING}${RESET}"
 
-apt-get update && apt-get install -y network-manager network-manager-gnome \
-    curl vim feh thunar meld git i3 i3lock dmenu terminator \
-    chromium-browser firefox \
-    python3 python3-pip \
-    alsa-utils alsa-oss xfonts-terminus console-terminus zsh
+apt-get update -q
+
+PACKAGES=(python3 python3-pip network-manager network-manager-gnome curl vim feh thunar meld git i3
+            i3lock dmenu terminator chromium-browser firefox alsa-utils alsa-oss
+            xfonts-terminus console-terminus zsh)
+
+for package in "${PACKAGES[@]}"
+do
+    echo -e "${GREEN}${BOLD}${PADDING}===> Installing ${package}...${PADDING}${RESET}"
+    apt-get install -y $package
+done
+
+echo -e "${GREEN}${BOLD}${PADDING}===> Installing remarkable...${PADDING}${RESET}"
 
 curl https://remarkableapp.github.io/files/remarkable_1.87_all.deb > remarkable.deb
 dpkg -i remarkable.deb
@@ -27,8 +35,14 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing pip packages...${PADDING}${RESET}"
 
+pip3 install virtualenv
+pip3 install virtualenvwrapper
 pip3 install py3status
 pip3 install escrotum
+
+echo -e "${GREEN}${BOLD}${PADDING}===> Installing vim plugins...${PADDING}${RESET}"
+
+vim -c VundleUpdate -c quitall
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing powerline fonts...${PADDING}${RESET}"
 
