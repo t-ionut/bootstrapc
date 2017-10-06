@@ -1,0 +1,80 @@
+# reset for lazy people 
+alias rt='reset' 
+
+# git aliases
+function pl_clone() {
+	echo "git clone git@git.presslabs.net:$1.git"
+	git clone git@git.presslabs.net:"$1".git
+}
+
+# clone presslabs repos for lazy people
+alias pl-clone=pl_clone 
+
+function git_clone() {
+	if [ -z $1 ]
+		then
+			echo "Repository and user must be specified!"
+	elif [ -z $2 ]
+		then
+			echo "Repository and user must be specified!"
+	elif [ $# -gt 2 ]
+		then
+			echo "Too many arguments!"
+	else
+		echo "git clone git@github.com:$1/$2.git"
+		git clone git@github.com:"$1"/"$2".git
+	fi
+}
+
+# clone git repos for lazy people
+alias git-clone=git_clone
+
+# git shortcuts for usual commands
+alias gdiff='git diff'
+alias gst='git status'
+alias gl='git log'
+alias ga='git add'
+alias grm='git rm'
+alias gc='git commit -m'
+alias gca='git commit -am'
+alias gp='git pull'
+
+function gpo_function() {
+	echo "git push origin $1"
+	git push origin $1
+}
+alias gpo=gpo_function
+alias gpom='git push origin master'
+
+function gpu_function() {
+	echo "git pull origin $1"
+	git pull origin $1
+}
+alias gpu=gpu_function
+
+# vagrant aliases
+alias vup='vagrant up'
+alias vpr='vagrant provision'
+alias vst='vagrant status'
+alias vht='vagrant halt'
+alias vdt='vagrant destroy'
+alias vssh='vagrant ssh'
+
+alias t='tree'
+
+# Python virtualenvs
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+
+fpath=(~/.zsh/completion $fpath)
+autoload -Uz compinit && compinit -i
+
+# Initialize keychain
+eval `keychain --eval --agents ssh aws/ronelam7.pem exison/id_rsa github/id_rsa presslabs/id_rsa`
+
+# Can't use <C-S> as a vim shortcut unless I do this
+alias vim="stty stop '' -ixoff ; vim"
+
+# Aliases for activating Python project virtualenvs and cd-ing into them
+alias opj='workon opinyonjay-core; cd ~/work/git/gitlab/opinyonjay-core'
+alias opjs='workon opinyonjay-sales; cd ~/work/git/gitlab/opinyonjay-sales'
