@@ -23,15 +23,11 @@ done
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing i3-gaps...${PADDING}${RESET}"
 
 git clone https://github.com/Airblader/i3 i3-gaps
-cd i3-gaps
-autoreconf --force --install
-rm -rf build
-mkdir -p build && cd build
 
-../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers
-make
-make install
-cd && rm -rf i3-gaps
+cd i3-gaps && autoreconf --force --install && rm -rf build &&
+mkdir -p build && cd build &&
+../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers &&
+make && make install && cd && rm -rf i3-gaps
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing remarkable...${PADDING}${RESET}"
 
