@@ -40,10 +40,6 @@ pip3 install virtualenvwrapper
 pip3 install py3status
 pip3 install escrotum
 
-echo -e "${GREEN}${BOLD}${PADDING}===> Installing vim plugins...${PADDING}${RESET}"
-
-vim -c VundleUpdate -c quitall
-
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing powerline fonts...${PADDING}${RESET}"
 
 git clone https://github.com/powerline/fonts.git --depth=1 &&
@@ -70,5 +66,9 @@ ln -sf ~/.bootstrapc/dotfiles/zshrc ~/.zshrc
 ln -sf ~/.bootstrapc/dotfiles/zsh_custom ~/.zsh_custom
 ln -sf ~/.bootstrapc/dotfiles/vimrc ~/.vimrc
 ln -sf ~/.bootstrapc/dotfiles/vim ~/.vim
+
+echo -e "${GREEN}${BOLD}${PADDING}===> Installing vim plugins...${PADDING}${RESET}"
+
+vim -c VundleUpdate -c quitall
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Bootstrap finished! Remember to restart!${PADDING}${RESET}"
