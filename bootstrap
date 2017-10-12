@@ -5,6 +5,9 @@ BOLD="\e[1m"
 PADDING="\n"
 RESET="\e[0m"
 
+echo -e "${GREEN}${BOLD}${PADDING}===> Enter your Linux username and press Enter to continue...${PADDING}${RESET}"
+read user
+
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing packages...${PADDING}${RESET}"
 
 apt-get update -qq
@@ -36,13 +39,14 @@ curl https://remarkableapp.github.io/files/remarkable_1.87_all.deb > remarkable.
 dpkg -i remarkable.deb
 rm remarkable.deb
 
-echo -e "${GREEN}${BOLD}${PADDING}===> Setting zsh as the default shell for $(whoami)...${PADDING}${RESET}"
+echo -e "${GREEN}${BOLD}${PADDING}===> Setting zsh as the default shell for ${user}...${PADDING}${RESET}"
 
-usermod -s $(which zsh) ionut
+usermod -s $(which zsh) ${user}
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing oh-my-zsh...${PADDING}${RESET}"
 
 git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
+chown -R ${user}
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing pip packages...${PADDING}${RESET}"
 
