@@ -1,3 +1,6 @@
+# manually specify that terminal supports 256 colors
+export TERM=xterm-256color
+
 # reset for lazy people 
 alias rt='reset' 
 

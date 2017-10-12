@@ -10,10 +10,10 @@ echo -e "${GREEN}${BOLD}${PADDING}===> Installing packages...${PADDING}${RESET}"
 apt-get update -qq
 
 PACKAGES=(autoconf libev4 libev-dev libstartup-notification-1.0 gir1.2-webkit-3.0 wkhtmltopdf
-            python-pip python3 python3-pip python3-markdown
+            python-pip python3 python3-pip python3-markdown python-gtk2 i3status i3lock
             network-manager network-manager-gnome curl vim feh thunar meld git
             dmenu terminator chromium-browser firefox alsa-utils alsa-oss openssh-server openssh-client
-            keychain xfonts-terminus console-terminus zsh)
+            keychain xbacklight xfonts-terminus console-terminus zsh)
 
 for package in "${PACKAGES[@]}"
 do
@@ -21,14 +21,14 @@ do
     apt-get install -y $package
 done
 
-echo -e "${GREEN}${BOLD}${PADDING}===> Installing i3-gaps...${PADDING}${RESET}"
+# echo -e "${GREEN}${BOLD}${PADDING}===> Installing i3-gaps...${PADDING}${RESET}"
 
-git clone https://github.com/Airblader/i3 i3-gaps
+# git clone https://github.com/Airblader/i3 i3-gaps
 
-cd i3-gaps && autoreconf --force --install && rm -rf build &&
-mkdir -p build && cd build &&
-../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers &&
-make && make install && cd && rm -rf i3-gaps
+# cd i3-gaps && autoreconf --force --install && rm -rf build &&
+# mkdir -p build && cd build &&
+# ../configure --prefix=/usr --sysconfdir=/etc --disable-sanitizers &&
+# make && make install && cd && rm -rf i3-gaps
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing remarkable...${PADDING}${RESET}"
 
@@ -46,10 +46,8 @@ git clone https://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing pip packages...${PADDING}${RESET}"
 
-pip install virtualenv
-pip install virtualenvwrapper
-pip3 install py3status
-pip3 install escrotum
+pip install virtualenv virtualenvwrapper escrotum
+pip3 install py3status pytz tzlocal
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing powerline fonts...${PADDING}${RESET}"
 
@@ -79,6 +77,10 @@ ln -sf ~/.bootstrapc/dotfiles/zsh_custom ~/.zsh_custom
 ln -sf ~/.bootstrapc/dotfiles/vimrc ~/.vimrc
 ln -sf ~/.bootstrapc/dotfiles/vim ~/.vim
 ln -sf ~/.bootstrapc/dotfiles/terminator ~/.config/terminator
+
+echo -e "${GREEN}${BOLD}${PADDING}===> Creating directory for screenshots...${PADDING}${RESET}"
+
+mkdir -p ~/Pictures/screenshots
 
 echo -e "${GREEN}${BOLD}${PADDING}===> Installing vim plugins...${PADDING}${RESET}"
 
