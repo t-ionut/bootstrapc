@@ -13,9 +13,10 @@ set expandtab
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
-set textwidth=80
+set textwidth=120
 set modeline
 set modelines=1
 set splitbelow
 set splitright
 set number
+" set wrapmargin=0

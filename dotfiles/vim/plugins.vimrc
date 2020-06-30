@@ -1,5 +1,6 @@
 " Show hidden files on NERDTree
 let g:NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.sw[o-z]$', '\.pyc']
 
 " Syntastic recommended settings
 set statusline+=%#warningmsg#
@@ -15,6 +16,7 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_aggregate_errors = 1
+let g:syntastic_python_python_exec = 'python3'
 
 " Vim Airline theme
 let g:airline_theme='jellybeans'

@@ -10,11 +10,16 @@ nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
 nnoremap <C-h> <C-w><C-h>
 
+nnoremap <C-Down> <C-w><C-j>
+nnoremap <C-Up> <C-w><C-k>
+nnoremap <C-Right> <C-w><C-l>
+nnoremap <C-Left> <C-w><C-h>
+
 " Stop myself from using arrows
-nnoremap <Up> :echomsg "use k"<cr>
-nnoremap <Down> :echomsg "use j"<cr>
-nnoremap <Left> :echomsg "use h"<cr>
-nnoremap <Right> :echomsg "use l"<cr>
+" nnoremap <Up> :echomsg "use k"<cr>
+" nnoremap <Down> :echomsg "use j"<cr>
+" nnoremap <Left> :echomsg "use h"<cr>
+" nnoremap <Right> :echomsg "use l"<cr>
 
 
 " Better resize shortcuts
@@ -50,6 +55,16 @@ nmap <C-g>c :Gcommit<cr>
 nmap <C-g>b :Gblame<cr>
 nmap <C-g>r :Gread<cr>
 nmap <C-g>w :Gwrite<cr>
+
+
+" Use tabs
+nnoremap tn :tabnew<Space>
+
+nnoremap tk :tabnext<CR>
+nnoremap tj :tabprev<CR>
+
+nnoremap th :tabfirst<CR>
+nnoremap tl :tablast<CR>
 
 " Find a way to make this mapping work ...
 " map <C-p> :SyntasticCheck php phpcs phpmd<cr>

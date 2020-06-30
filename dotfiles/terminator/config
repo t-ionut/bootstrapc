@@ -21,7 +21,6 @@
 [profiles]
   [[default]]
     background_darkness = 1.0
-    background_type = solid
     cursor_color = "#eee8d5"
     font = Terminus 9
     foreground_color = "#fbefe0"

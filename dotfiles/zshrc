@@ -1,3 +1,7 @@
+PY3STATUS_COLOR_GOOD="#f3f4f5"
+PY3STATUS_COLOR_WEAK="#fdfd96"
+PY3STATUS_COLOR_BAD="#ff6961"
+
 # Path to your oh-my-zsh installation.
 export ZSH=~/.oh-my-zsh
 
@@ -30,6 +34,10 @@ export EDITOR='vim'
 source ~/.zsh_custom
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

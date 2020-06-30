@@ -4,34 +4,6 @@ export TERM=xterm-256color
 # reset for lazy people 
 alias rt='reset' 
 
-# git aliases
-function pl_clone() {
-	echo "git clone git@git.presslabs.net:$1.git"
-	git clone git@git.presslabs.net:"$1".git
-}
-
-# clone presslabs repos for lazy people
-alias pl-clone=pl_clone 
-
-function git_clone() {
-	if [ -z $1 ]
-		then
-			echo "Repository and user must be specified!"
-	elif [ -z $2 ]
-		then
-			echo "Repository and user must be specified!"
-	elif [ $# -gt 2 ]
-		then
-			echo "Too many arguments!"
-	else
-		echo "git clone git@github.com:$1/$2.git"
-		git clone git@github.com:"$1"/"$2".git
-	fi
-}
-
-# clone git repos for lazy people
-alias git-clone=git_clone
-
 # git shortcuts for usual commands
 alias gdiff='git diff'
 alias gst='git status'
@@ -41,6 +13,7 @@ alias grm='git rm'
 alias gc='git commit -m'
 alias gca='git commit -am'
 alias gp='git pull'
+alias gck='git checkout'
 
 function gpo_function() {
 	echo "git push origin $1"
@@ -55,14 +28,6 @@ function gpu_function() {
 }
 alias gpu=gpu_function
 
-# vagrant aliases
-alias vup='vagrant up'
-alias vpr='vagrant provision'
-alias vst='vagrant status'
-alias vht='vagrant halt'
-alias vdt='vagrant destroy'
-alias vssh='vagrant ssh'
-
 alias t='tree'
 
 # Python virtualenvs
@@ -73,11 +38,23 @@ fpath=(~/.zsh/completion $fpath)
 autoload -Uz compinit && compinit -i
 
 # Initialize keychain
-eval `keychain --eval --agents ssh aws/ronelam7.pem exison/id_rsa github/id_rsa presslabs/id_rsa`
+eval `keychain --eval --agents ssh github_rsa 3pg_rsa`
 
 # Can't use <C-S> as a vim shortcut unless I do this
 alias vim="stty stop '' -ixoff ; vim"
 
-# Aliases for activating Python project virtualenvs and cd-ing into them
-alias opj='workon opinyonjay-core; cd ~/work/git/gitlab/opinyonjay-core'
-alias opjs='workon opinyonjay-sales; cd ~/work/git/gitlab/opinyonjay-sales'
+export PANDA_DJANGO_INTERACTIVE=true
+export PANDA_IGNORE_REQUIREMENTS=1
+
+alias dcom='docker-compose'
+
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH="$PATH:/usr/local/go/bin"
+
+alias run-emu='$ANDROID_HOME/tools/emulator'
+alias fix-kvm='sudo chown $(id -u) /dev/kvm'
+

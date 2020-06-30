@@ -41,8 +41,12 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'potatoesmaster/i3-vim-syntax'
 
 Plugin 'vim-airline/vim-airline-themes'
-" Drupal Vim plugin
-" Plugin 'drupal-vimrc'
+
+Plugin 'leafgarland/typescript-vim'
+
+Plugin 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+Plugin 'mxw/vim-jsx'
 
 call vundle#end()
 filetype plugin indent on

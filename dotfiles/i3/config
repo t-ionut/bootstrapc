@@ -7,20 +7,23 @@ set $mod Mod4
 
 # font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below. ISO 10646 = Unicode
-font pango:Terminus Bold Semi-Condensed 12px
+font pango:System San Francisco Display 11px
 
 # set default layout as tabbed
 workspace_layout tabbed
 
-##############################
-# Set window colors
-# 
-# <colorclass> <border> <background> <text> <indicator> <child_border>
-##############################
-client.focused          #16A086 #16A086 #000000
-client.focused_inactive #000000 #000000 #16A086
-client.unfocused        #000000 #000000 #16A086
-client.urgent           #2F343A #900000 #FFFFFF
+set $bg-color 	         #2f343f
+set $inactive-bg-color   #2f343f
+set $text-color          #f3f4f5
+set $inactive-text-color #676E7D
+set $urgent-bg-color     #E53935
+
+# window colors
+#                       border              background         text                 indicator
+client.focused          $bg-color           $bg-color          $text-color          #00ff00
+client.unfocused        $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.focused_inactive $inactive-bg-color  $inactive-bg-color $inactive-text-color #00ff00
+client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
 # use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -31,11 +34,8 @@ bindsym $mod+Shift+q kill
 # how to start a terminal
 bindsym $mod+Return exec --no-startup-id terminator
 
-# start default browser
-bindsym $mod+q exec google-chrome
-
 # start secondary browser
-bindsym $mod+w exec chromium-browser --enable-plugins
+bindsym $mod+w exec firefox
 
 # volume control
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q set Master 4%+ unmute
@@ -46,11 +46,7 @@ bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse set Master toggle
 bindsym XF86MonBrightnessUp exec xbacklight -inc 20
 bindsym XF86MonBrightnessDown exec xbacklight -dec 20
 
-# start dmenu (a program launcher)
-bindsym $mod+m exec --no-startup-id dmenu_run -i -l 15 -p 'search >' \
-            -fn 'Terminus:bold:pixelsize=12' \
-            -nb '#000000' -nf '#16A086' \
-            -sb '#16A086' -sf '#000000'
+bindsym $mod+m exec --no-startup-id rofi -show run -lines 5 -eh 2
 
 # change focus
 bindsym $mod+j focus left
@@ -71,11 +67,12 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 bindsym $mod+t layout tabbed
-bindsym $mod+e layout toggle split
+bindsym $mod+e layout splith
+bindsym $mod+q layout splitv
 bindsym $mod+s layout stacking
 
-bindsym $mod+h split h
-bindsym $mod+v split v
+bindsym $mod+h splith
+bindsym $mod+v splitv
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -86,33 +83,54 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
+set $chat "-   Chat"
+set $docker "d   Docker"
+set $music "~   Music"
+set $code "1   Code "
+set $firefox "2   Firefox"
+set $chromium "3   Chromium"
+set $w4 " 4 "
+set $w5 " 5 "
+set $w6 " 6 "
+set $w7 " 7 "
+set $w8 " 8 "
+set $w9 " 9 "
+set $w10 " 10 "
+
 # switch to workspace
-bindsym $mod+1 workspace 1
-bindsym $mod+2 workspace 2
-bindsym $mod+3 workspace 3
-bindsym $mod+4 workspace 4
-bindsym $mod+5 workspace 5
-bindsym $mod+6 workspace 6
-bindsym $mod+7 workspace 7
-bindsym $mod+8 workspace 8
-bindsym $mod+9 workspace 9
-bindsym $mod+0 workspace 10
-bindsym $mod+grave workspace music
-bindsym $mod+d workspace deploy
+bindsym $mod+1 workspace $code
+bindsym $mod+2 workspace $firefox
+bindsym $mod+3 workspace $chromium
+bindsym $mod+4 workspace $w4
+bindsym $mod+5 workspace $w5
+bindsym $mod+6 workspace $w6
+bindsym $mod+7 workspace $w7
+bindsym $mod+8 workspace $w8
+bindsym $mod+9 workspace $w9
+bindsym $mod+0 workspace $w10
+bindsym $mod+grave workspace $music
+bindsym $mod+d workspace $docker
+bindsym $mod+minus workspace $chat
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace 1
-bindsym $mod+Shift+2 move container to workspace 2
-bindsym $mod+Shift+3 move container to workspace 3
-bindsym $mod+Shift+4 move container to workspace 4
-bindsym $mod+Shift+5 move container to workspace 5
-bindsym $mod+Shift+6 move container to workspace 6
-bindsym $mod+Shift+7 move container to workspace 7
-bindsym $mod+Shift+8 move container to workspace 8
-bindsym $mod+Shift+9 move container to workspace 9
-bindsym $mod+Shift+0 move container to workspace 10
-bindsym $mod+Shift+grave move container to workspace music
-bindsym $mod+Shift+d move container to workspace deploy
+bindsym $mod+Shift+1 move container to workspace $code
+bindsym $mod+Shift+2 move container to workspace $firefox
+bindsym $mod+Shift+3 move container to workspace $chromium
+bindsym $mod+Shift+4 move container to workspace $w4
+bindsym $mod+Shift+5 move container to workspace $w5
+bindsym $mod+Shift+6 move container to workspace $w6
+bindsym $mod+Shift+7 move container to workspace $w7
+bindsym $mod+Shift+8 move container to workspace $w8
+bindsym $mod+Shift+9 move container to workspace $w9
+bindsym $mod+Shift+0 move container to workspace $w10
+bindsym $mod+Shift+grave move container to workspace $music
+bindsym $mod+Shift+d move container to workspace $docker
+bindsym $mod+Shift+minus move container to workspace $chat
+
+for_window [class="Spotify"] move to workspace $music
+for_window [class="Mattermost|Skype|Slack"] move to workspace $chat
+for_window [class="Firefox"] move to workspace $firefox
+for_window [class="Chromium-browser"] move to workspace $chromium
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -157,48 +175,48 @@ mode "resize" {
 ##############################
 bar {
     position top
-    font pango:Terminus Bold Semi-Condensed 12px
+    font pango:System San Francisco Display 11px
+    separator_symbol " | "
     status_command py3status -c ~/.i3/i3status.conf
 
     colors {
-        background #000000
-        statusline #16A086
+        background $bg-color
+        separator #757575
 
-        focused_workspace  #16A086 #16A086 #000000
-        active_workspace   #000000 #000000 #16A086
-        inactive_workspace #000000 #000000 #16A086
-        urgent_workspace   #2F343A #900000 #ffffff
+        #                  border             background         text
+        focused_workspace  $bg-color          $bg-color          $text-color
+        inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
+        urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
     }
 }
 
 # hide vertical borders, they get in the way of the mouse
 hide_edge_borders both
 
-# hide the top title bar
-new_window 1pixel
-
 # screenshots using escrotum
-bindsym Print exec --no-startup-id escrotum '/home/ionut/Pictures/screenshots/%Y-%m-%d-%s_$wx$h.png'
-bindsym $mod+Print exec --no-startup-id escrotum -s '/home/ionut/Pictures/screenshots/%Y-%m-%d-%s_$wx$h.png'
+bindsym Print exec --no-startup-id escrotum 'Pictures/screenshots/%Y-%m-%d-%s_$wx$h.png'
+bindsym $mod+Print exec --no-startup-id escrotum -s 'Pictures/screenshots/%Y-%m-%d-%s_$wx$h.png'
 
 # i3lock
-bindsym $mod+Scroll_Lock exec --no-startup-id i3lock -c 444499
+bindsym $mod+b exec --no-startup-id i3lock -c "$bg-color"
 
 # thunar
-bindsym $mod+f exec thunar
-
-# i3-gaps
-# gaps inner 5
-# gaps outer 10
+bindsym $mod+f exec nautilus
 
 # Disable window titlebars
-for_window [class="^.*"] border pixel 0
+# for_window [class="^.*"] border pixel 1
+for_window [title="^Android Emulator.*"] floating enable
+
 
 # background image
-exec --no-startup-id feh --bg-fill ~/.i3/wallpapers/solarized-triangle.png
+exec --no-startup-id feh --bg-fill ~/.i3/wallpapers/leon-ephraim-xV8uGe9gd6k-unsplash.jpg
 
 # wi-fi applet
 exec nm-applet
 
-# still using RescueTime to track productivity
-exec rescuetime
+# blueman applet
+exec blueman-applet
+
+exec "setxkbmap ro"
+
+exec_always compton -f
